@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dalfabay — Vintage Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --charcoal: #1C1A17;
+    --ivory: #F0EBE1;
+    --rose: #C9A99A;
+    --gold: #B8965A;
+    --sage: #7A8C6E;
+    --light-rose: #EDD9D1;
+    --off-white: #FAF7F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement {
+    background: var(--charcoal);
+    color: var(--ivory);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--off-white);
+    border-bottom: 1px solid rgba(28,26,23,0.1);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .nav-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--charcoal);
+    font-size: 18px;
+    position: relative;
+    padding: 4px;
+  }
+
+  .cart-count {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    background: var(--gold);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 108px);
+    overflow: hidden;
+  }
+
+  .hero-text {
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-text::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border: 1px solid rgba(184,150,90,0.2);
+    border-radius: 50%;
+  }
+  .hero-text::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    border: 1px solid rgba(201,169,154,0.15);
+    border-radius: 50%;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 5.5vw, 82px);
+    font-weight: 700;
+    line-height: 1.0;
+    color: var(--ivory);
+    margin-bottom: 12px;
+  }
+
+  .hero-title em {
+    display: block;
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 3.5vw, 56px);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(240,235,225,0.45);
+    margin-bottom: 36px;
+    line-height: 1.1;
+  }
+
+  .hero-desc {
+    color: rgba(240,235,225,0.6);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 16px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #a07d47;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: none;
+    color: var(--ivory);
+    border: 1px solid rgba(240,235,225,0.3);
+    padding: 16px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--light-rose);
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: sepia(15%) contrast(1.05);
+  }
+
+  .hero-image-overlay {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    background: var(--charcoal);
+    padding: 20px 28px;
+  }
+
+  .hero-image-overlay p {
+    color: var(--ivory);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .hero-image-overlay strong {
+    color: var(--gold);
+    font-size: 22px;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 22s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-track span {
+    color: white;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0 40px;
+  }
+
+  .marquee-track span::after {
+    content: '✦';
+    margin-left: 40px;
+    opacity: 0.5;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.15;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    padding: 100px 48px;
+    background: var(--off-white);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .cat-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    background: var(--light-rose);
+  }
+
+  .cat-card:first-child {
+    grid-column: span 2;
+    aspect-ratio: auto;
+    min-height: 480px;
+  }
+
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: sepia(10%);
+  }
+
+  .cat-card:hover img { transform: scale(1.04); }
+
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(28,26,23,0.75) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+  }
+
+  .cat-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--ivory);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .cat-link {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(240,235,225,0.65);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .cat-link:hover { color: var(--rose); }
+  .cat-link::after { content: '→'; }
+
+  /* ── PRODUCTS ── */
+  .products {
+    padding: 100px 48px;
+    background: var(--ivory);
+  }
+
+  .filter-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: none;
+    border: 1px solid rgba(28,26,23,0.2);
+    color: var(--charcoal);
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--charcoal);
+    color: var(--ivory);
+    border-color: var(--charcoal);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px 24px;
+  }
+
+  .product-card {
+    cursor: pointer;
+  }
+
+  .product-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: var(--light-rose);
+    margin-bottom: 16px;
+  }
+
+  .product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    filter: sepia(8%);
+  }
+
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+  .product-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--charcoal);
+    color: var(--ivory);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: 500;
+  }
+
+  .product-badge.sale { background: var(--rose); }
+  .product-badge.new { background: var(--sage); }
+
+  .product-quick-add {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--charcoal);
+    color: var(--ivory);
+    text-align: center;
+    padding: 14px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .product-card:hover .product-quick-add { transform: translateY(0); }
+
+  .product-wishlist {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: white;
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 15px;
+  }
+
+  .product-card:hover .product-wishlist { opacity: 1; }
+
+  .product-era {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .product-price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-price {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  .product-price-old {
+    font-size: 13px;
+    color: rgba(28,26,23,0.4);
+    text-decoration: line-through;
+  }
+
+  .product-size {
+    font-size: 11px;
+    color: rgba(28,26,23,0.5);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  .load-more-wrap {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .btn-outline {
+    background: none;
+    border: 1.5px solid var(--charcoal);
+    color: var(--charcoal);
+    padding: 16px 52px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    background: var(--charcoal);
+    color: var(--ivory);
+  }
+
+  /* ── EDITORIAL STRIP ── */
+  .editorial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+
+  .editorial-img {
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+
+  .editorial-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.85;
+    filter: sepia(20%);
+  }
+
+  .editorial-text {
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 72px;
+  }
+
+  .editorial-text .section-eyebrow { text-align: left; }
+
+  .editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 3vw, 50px);
+    color: var(--ivory);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .editorial-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .editorial-body {
+    color: rgba(240,235,225,0.6);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 420px;
+  }
+
+  /* ── VALUES ── */
+  .values {
+    padding: 100px 48px;
+    background: var(--off-white);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(28,26,23,0.08);
+  }
+
+  .value-item {
+    background: var(--off-white);
+    padding: 52px 44px;
+    text-align: center;
+  }
+
+  .value-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .value-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .value-body {
+    font-size: 14px;
+    color: rgba(28,26,23,0.6);
+    line-height: 1.7;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 100px 48px;
+    background: var(--ivory);
+    text-align: center;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+  }
+
+  .testi-card {
+    background: var(--off-white);
+    padding: 40px 36px;
+    text-align: left;
+    position: relative;
+  }
+
+  .testi-quote {
+    font-size: 52px;
+    font-family: 'Playfair Display', serif;
+    color: var(--rose);
+    line-height: 0.8;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .testi-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .testi-stars {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .testi-author {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(28,26,23,0.5);
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--charcoal);
+    padding: 100px 48px;
+    text-align: center;
+  }
+
+  .newsletter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    color: var(--ivory);
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .newsletter-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .newsletter-sub {
+    color: rgba(240,235,225,0.55);
+    font-size: 15px;
+    margin-bottom: 44px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: rgba(240,235,225,0.08);
+    border: 1px solid rgba(240,235,225,0.2);
+    border-right: none;
+    color: var(--ivory);
+    padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input::placeholder { color: rgba(240,235,225,0.35); }
+  .newsletter-input:focus { border-color: var(--gold); }
+
+  .newsletter-btn {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .newsletter-btn:hover { background: #a07d47; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #141210;
+    padding: 80px 48px 40px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 64px;
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 16px;
+  }
+
+  .footer-brand-name span { color: var(--gold); }
+
+  .footer-brand-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(240,235,225,0.4);
+    max-width: 280px;
+    margin-bottom: 28px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 14px;
+  }
+
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(240,235,225,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(240,235,225,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-col-title {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    color: rgba(240,235,225,0.4);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--rose); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(240,235,225,0.08);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(240,235,225,0.3);
+  }
+
+  .footer-pay {
+    display: flex;
+    gap: 10px;
+  }
+
+  .pay-badge {
+    background: rgba(240,235,225,0.08);
+    color: rgba(240,235,225,0.4);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── CART DRAWER ── */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(28,26,23,0.5);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  .cart-drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 420px;
+    background: var(--off-white);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-drawer.open { transform: translateX(0); }
+
+  .cart-header {
+    padding: 28px 32px;
+    border-bottom: 1px solid rgba(28,26,23,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .cart-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--charcoal);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .cart-close:hover { opacity: 1; }
+
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+  }
+
+  .cart-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 16px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(28,26,23,0.08);
+  }
+
+  .cart-item-img {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--light-rose);
+  }
+
+  .cart-item-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cart-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .cart-item-meta {
+    font-size: 12px;
+    color: rgba(28,26,23,0.5);
+    margin-bottom: 12px;
+  }
+
+  .cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .qty-btn {
+    background: none;
+    border: 1px solid rgba(28,26,23,0.2);
+    width: 28px; height: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .qty-btn:hover { background: var(--charcoal); color: white; border-color: var(--charcoal); }
+
+  .cart-item-price {
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .cart-footer {
+    padding: 24px 32px 32px;
+    border-top: 1px solid rgba(28,26,23,0.1);
+  }
+
+  .cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .cart-total-label { color: rgba(28,26,23,0.6); }
+  .cart-total-price { font-weight: 600; font-size: 18px; font-family: 'Playfair Display', serif; }
+
+  .cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(28,26,23,0.4);
+  }
+
+  .cart-empty-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--charcoal);
+    color: var(--ivory);
+    padding: 14px 28px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    z-index: 300;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── HERO PLACEHOLDER IMAGES ── */
+  .img-placeholder {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { min-height: 400px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-card:first-child { grid-column: span 2; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .editorial { grid-template-columns: 1fr; }
+    .editorial-img { min-height: 320px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .categories, .products, .testimonials, .values, .newsletter { padding: 64px 24px; }
+    .editorial-text { padding: 64px 36px; }
+    footer { padding: 64px 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement">
+  Free shipping on orders over $80 &nbsp;·&nbsp; New vintage drops every Thursday
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">Dalfabay<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#categories">Collections</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#editorial">Journal</a></li>
+    <li><a href="#">Sell</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-icon" onclick="alert('Search coming soon')">🔍</button>
+    <button class="nav-icon" onclick="openCart()" id="cartBtn">
+      🛍
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Est. in the spirit of every decade</p>
+    <h1 class="hero-title">
+      Wear<br>
+      <em>History.</em>
+    </h1>
+    <p class="hero-sub">Dress like you lived it.</p>
+    <p class="hero-desc">Dalfabay curates the finest pre-loved and vintage clothing — from 1960s mod to 90s grunge. Every piece has a story. Find yours.</p>
+    <div class="hero-cta-row">
+      <a href="#shop" class="btn-primary">Shop Now</a>
+      <a href="#categories" class="btn-ghost">Browse Eras</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <svg class="img-placeholder" viewBox="0 0 700 900" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="900" fill="#C9A99A"/>
+      <rect x="0" y="0" width="700" height="900" fill="url(#heroGrad)"/>
+      <defs>
+        <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#D4B5A8"/>
+          <stop offset="100%" stop-color="#9A7B71"/>
+        </linearGradient>
+      </defs>
+      <!-- Stylized figure silhouette -->
+      <ellipse cx="350" cy="200" rx="70" ry="80" fill="#1C1A17" opacity="0.15"/>
+      <rect x="280" y="270" width="140" height="200" rx="4" fill="#1C1A17" opacity="0.12"/>
+      <rect x="260" y="465" width="65" height="280" rx="4" fill="#1C1A17" opacity="0.10"/>
+      <rect x="375" y="465" width="65" height="280" rx="4" fill="#1C1A17" opacity="0.10"/>
+      <!-- Decorative dots -->
+      <circle cx="100" cy="150" r="4" fill="#B8965A" opacity="0.5"/>
+      <circle cx="600" cy="700" r="6" fill="#B8965A" opacity="0.4"/>
+      <circle cx="560" cy="120" r="3" fill="white" opacity="0.4"/>
+      <!-- Label tag -->
+      <rect x="500" y="380" width="130" height="60" rx="2" fill="white" opacity="0.9"/>
+      <text x="515" y="404" font-family="serif" font-size="10" fill="#1C1A17" opacity="0.7">DALFABAY</text>
+      <text x="515" y="422" font-family="serif" font-size="9" fill="#B8965A">Vintage — Curated</text>
+    </svg>
+    <div class="hero-image-overlay">
+      <p>New Arrivals</p>
+      <strong>Spring Edit '26</strong>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Free Returns</span><span>Sustainably Sourced</span><span>Authenticity Guaranteed</span><span>New Drops Every Thursday</span><span>150+ Verified Sellers</span><span>Free Returns</span><span>Sustainably Sourced</span><span>Authenticity Guaranteed</span><span>New Drops Every Thursday</span><span>150+ Verified Sellers</span>
+  </div>
+</div>
+
+<!-- Categories -->
+<section class="categories" id="categories">
+  <div class="section-header">
+    <p class="section-eyebrow">Shop by Era</p>
+    <h2 class="section-title">Find Your <em>Decade</em></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <svg class="img-placeholder" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="600" height="600" fill="#7A8C6E"/>
+        <rect width="600" height="600" fill="url(#cg1)" opacity="0.7"/>
+        <defs><linearGradient id="cg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8FA080"/><stop offset="100%" stop-color="#506044"/></linearGradient></defs>
+        <circle cx="300" cy="220" r="90" fill="white" opacity="0.07"/>
+        <text x="300" y="340" text-anchor="middle" font-family="serif" font-size="80" fill="white" opacity="0.15">60s</text>
+      </svg>
+      <div class="cat-overlay">
+        <p class="cat-label">Collection</p>
+        <h3 class="cat-name">Mod & Swinging Sixties</h3>
+        <a href="#" class="cat-link">Explore collection</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <svg class="img-placeholder" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="500" fill="#B8965A"/>
+        <rect width="400" height="500" fill="url(#cg2)" opacity="0.6"/>
+        <defs><linearGradient id="cg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9A45A"/><stop offset="100%" stop-color="#8A6830"/></linearGradient></defs>
+        <text x="200" y="280" text-anchor="middle" font-family="serif" font-size="80" fill="white" opacity="0.15">70s</text>
+      </svg>
+      <div class="cat-overlay">
+        <p class="cat-label">Collection</p>
+        <h3 class="cat-name">Disco & Boho Seventies</h3>
+        <a href="#" class="cat-link">Explore collection</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <svg class="img-placeholder" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="500" fill="#C9A99A"/>
+        <text x="200" y="280" text-anchor="middle" font-family="serif" font-size="80" fill="white" opacity="0.15">80s</text>
+      </svg>
+      <div class="cat-overlay">
+        <p class="cat-label">Collection</p>
+        <h3 class="cat-name">Bold & Power Eighties</h3>
+        <a href="#" class="cat-link">Explore collection</a>
+      </div>
+    </div>
+    <div class="cat-card">
+      <svg class="img-placeholder" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="500" fill="#1C1A17"/>
+        <rect width="400" height="500" fill="url(#cg4)" opacity="0.8"/>
+        <defs><linearGradient id="cg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2C2825"/><stop offset="100%" stop-color="#0C0A08"/></linearGradient></defs>
+        <text x="200" y="280" text-anchor="middle" font-family="serif" font-size="80" fill="white" opacity="0.12">90s</text>
+      </svg>
+      <div class="cat-overlay">
+        <p class="cat-label">Collection</p>
+        <h3 class="cat-name">Grunge & Nineties Cool</h3>
+        <a href="#" class="cat-link">Explore collection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="products" id="shop">
+  <div class="section-header">
+    <p class="section-eyebrow">Featured Pieces</p>
+    <h2 class="section-title">This Week's <em>Finds</em></h2>
+  </div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterProducts(this, 'all')">All</button>
+    <button class="filter-btn" onclick="filterProducts(this, 'jackets')">Jackets</button>
+    <button class="filter-btn" onclick="filterProducts(this, 'dresses')">Dresses</button>
+    <button class="filter-btn" onclick="filterProducts(this, 'tops')">Tops</button>
+    <button class="filter-btn" onclick="filterProducts(this, 'bottoms')">Bottoms</button>
+    <button class="filter-btn" onclick="filterProducts(this, 'accessories')">Accessories</button>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+    <!-- Products rendered by JS -->
+  </div>
+
+  <div class="load-more-wrap">
+    <a href="#" class="btn-outline">Load More Pieces</a>
+  </div>
+</section>
+
+<!-- Editorial -->
+<section class="editorial" id="about">
+  <div class="editorial-img">
+    <svg class="img-placeholder" viewBox="0 0 600 560" xmlns="http://www.w3.org/2000/svg">
+      <rect width="600" height="560" fill="#2C2420"/>
+      <circle cx="300" cy="240" r="180" fill="#3D2E26" opacity="0.6"/>
+      <rect x="200" y="100" width="200" height="340" rx="4" fill="#C9A99A" opacity="0.15"/>
+      <circle cx="300" cy="140" r="55" fill="#C9A99A" opacity="0.2"/>
+      <text x="300" y="460" text-anchor="middle" font-family="serif" font-style="italic" font-size="18" fill="#B8965A" opacity="0.7">Dalfabay</text>
+    </svg>
+  </div>
+  <div class="editorial-text">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="editorial-title">Fashion that <em>remembers</em> where it's been.</h2>
+    <p class="editorial-body">Every piece in our collection has lived a life before yours. We believe clothing carries memory — the parties attended, the streets walked, the decades witnessed. Dalfabay was founded to honor that history, giving extraordinary vintage pieces a second chapter with people who truly appreciate them.</p>
+    <a href="#" class="btn-primary">Read Our Story</a>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="values">
+  <div class="section-header">
+    <p class="section-eyebrow">Why Dalfabay</p>
+    <h2 class="section-title">Vintage done <em>right</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-item">
+      <span class="value-icon">🔍</span>
+      <h3 class="value-title">Authenticated & Graded</h3>
+      <p class="value-body">Every piece is inspected, authenticated, and graded by our team of vintage specialists before it reaches your door. No surprises.</p>
+    </div>
+    <div class="value-item">
+      <span class="value-icon">🌿</span>
+      <h3 class="value-title">Sustainably Minded</h3>
+      <p class="value-body">Buying vintage is the most sustainable fashion choice you can make. We offset the carbon of every shipment to make it even cleaner.</p>
+    </div>
+    <div class="value-item">
+      <span class="value-icon">📦</span>
+      <h3 class="value-title">Careful Packaging</h3>
+      <p class="value-body">Your vintage pieces arrive wrapped in our signature tissue, boxed with care, and shipped with 14-day free returns — no questions asked.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="section-header">
+    <p class="section-eyebrow">From Our Community</p>
+    <h2 class="section-title">What people <em>say</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <span class="testi-stars">★★★★★</span>
+      <p class="testi-text">Found a 1972 Levi's denim jacket in perfect condition. The way it was described matched exactly. Dalfabay has become my favourite place to shop online, full stop.</p>
+      <p class="testi-author">— Amara K., Nairobi</p>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <span class="testi-stars">★★★★★</span>
+      <p class="testi-text">I love that every item tells a story. The packaging is beautiful, and the vintage 80s blazer I got fits like it was made for me. Already ordered three more pieces.</p>
+      <p class="testi-author">— Chisom O., Lagos</p>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <span class="testi-stars">★★★★★</span>
+      <p class="testi-text">The authentication guarantee gave me confidence in my first order. Got a stunning 60s mod dress. Returns were easy and communication was excellent. Truly outstanding service.</p>
+      <p class="testi-author">— Fatima A., Accra</p>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <h2 class="newsletter-title">New drops land <em>Thursdays.</em></h2>
+  <p class="newsletter-sub">Join 18,000+ vintage lovers who get first access to new arrivals, exclusive edits, and stories from the archive.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="your@email.com">
+    <button class="newsletter-btn" onclick="subscribeNewsletter()">Join the Edit</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Dalfabay<span>.</span></div>
+      <p class="footer-brand-desc">Curated vintage clothing from the 1960s through the 1990s. Authenticated, graded, and delivered with care.</p>
+      <div class="footer-social">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">tk</a>
+        <a href="#" class="social-link">pi</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Dresses</a></li>
+        <li><a href="#">Jackets & Coats</a></li>
+        <li><a href="#">Tops & Blouses</a></li>
+        <li><a href="#">Denim</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Help</p>
+      <ul class="footer-links">
+        <li><a href="#">Sizing Guide</a></li>
+        <li><a href="#">Authenticity</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Sell with Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Dalfabay. All rights reserved.</p>
+    <div class="footer-pay">
+      <span class="pay-badge">Visa</span>
+      <span class="pay-badge">Mastercard</span>
+      <span class="pay-badge">M-Pesa</span>
+      <span class="pay-badge">PayPal</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Bag</span>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <span class="cart-empty-icon">🛍</span>
+      <p>Your bag is empty.</p>
+      <p style="margin-top:8px;font-size:13px;">Start adding vintage pieces!</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Subtotal</span>
+      <span class="cart-total-price" id="cartTotal">$0</span>
+    </div>
+    <button class="btn-primary" style="width:100%;text-align:center;display:block;padding:18px" onclick="alert('Checkout coming soon!')">Checkout →</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  const products = [
+    { id:1, name:"Corduroy Blazer", era:"1970s", price:128, oldPrice:null, badge:"new", category:"jackets", size:"M", color:"#8B7355" },
+    { id:2, name:"Floral Midi Dress", era:"1960s", price:94, oldPrice:148, badge:"sale", category:"dresses", size:"S", color:"#C9A99A" },
+    { id:3, name:"Levi's 501 Jeans", era:"1980s", price:110, oldPrice:null, badge:null, category:"bottoms", size:"28", color:"#4A6B9A" },
+    { id:4, name:"Silk Blouse", era:"1970s", price:72, oldPrice:null, badge:"new", category:"tops", size:"L", color:"#B8965A" },
+    { id:5, name:"Leather Biker Jacket", era:"1980s", price:245, oldPrice:320, badge:"sale", category:"jackets", size:"M", color:"#2C2420" },
+    { id:6, name:"Plaid Mini Skirt", era:"1990s", price:58, oldPrice:null, badge:null, category:"bottoms", size:"XS", color:"#7A8C6E" },
+    { id:7, name:"Cashmere Turtleneck", era:"1960s", price:88, oldPrice:null, badge:"new", category:"tops", size:"M", color:"#D4B5A8" },
+    { id:8, name:"Beaded Clutch Bag", era:"1970s", price:65, oldPrice:null, badge:null, category:"accessories", size:"OS", color:"#B8965A" },
+  ];
+
+  let cart = [];
+
+  function getProductColor(hex) {
+    return hex;
+  }
+
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('productGrid');
+    const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <svg width="100%" height="100%" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" style="display:block">
+            <rect width="300" height="400" fill="${p.color}" opacity="0.7"/>
+            <rect width="300" height="400" fill="url(#pg${p.id})"/>
+            <defs>
+              <linearGradient id="pg${p.id}" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="white" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="black" stop-opacity="0.1"/>
+              </linearGradient>
+            </defs>
+            <text x="150" y="220" text-anchor="middle" font-family="serif" font-style="italic" font-size="13" fill="white" opacity="0.5">${p.era}</text>
+          </svg>
+          ${p.badge ? `<span class="product-badge ${p.badge}">${p.badge === 'new' ? 'New In' : 'Sale'}</span>` : ''}
+          <button class="product-wishlist">♡</button>
+          <button class="product-quick-add" onclick="addToCart(${p.id})">+ Add to Bag</button>
+        </div>
+        <p class="product-era">${p.era}</p>
+        <h3 class="product-name">${p.name}</h3>
+        <div class="product-price-row">
+          <span class="product-price">$${p.price}</span>
+          ${p.oldPrice ? `<span class="product-price-old">$${p.oldPrice}</span>` : ''}
+        </div>
+        <p class="product-size">Size ${p.size} · One of a kind</p>
+      </div>
+    `).join('');
+  }
+
+  function filterProducts(btn, filter) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(filter);
+  }
+
+  function addToCart(productId) {
+    const p = products.find(x => x.id === productId);
+    const existing = cart.find(x => x.id === productId);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ ...p, qty: 1 });
+    }
+    updateCart();
+    showToast(`"${p.name}" added to your bag`);
+    openCart();
+  }
+
+  function updateCart() {
+    document.getElementById('cartCount').textContent = cart.reduce((s,i) => s+i.qty, 0);
+    const itemsEl = document.getElementById('cartItems');
+    const footerEl = document.getElementById('cartFooter');
+    if (cart.length === 0) {
+      itemsEl.innerHTML = `<div class="cart-empty"><span class="cart-empty-icon">🛍</span><p>Your bag is empty.</p></div>`;
+      footerEl.style.display = 'none';
+    } else {
+      itemsEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div class="cart-item-img">
+            <svg width="80" height="107" viewBox="0 0 80 107" xmlns="http://www.w3.org/2000/svg">
+              <rect width="80" height="107" fill="${item.color}" opacity="0.7"/>
+            </svg>
+          </div>
+          <div>
+            <p class="cart-item-name">${item.name}</p>
+            <p class="cart-item-meta">${item.era} · Size ${item.size}</p>
+            <div class="cart-qty">
+              <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+              <span>${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+          </div>
+          <div class="cart-item-price">$${item.price * item.qty}</div>
+        </div>
+      `).join('');
+      const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+      document.getElementById('cartTotal').textContent = `$${total}`;
+      footerEl.style.display = 'block';
+    }
+  }
+
+  function changeQty(id, delta) {
+    const idx = cart.findIndex(x => x.id === id);
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    updateCart();
+  }
+
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+  }
+
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  function subscribeNewsletter() {
+    const input = document.querySelector('.newsletter-input');
+    if (input.value && input.value.includes('@')) {
+      showToast('You\'re on the list! See you Thursday.');
+      input.value = '';
+    } else {
+      showToast('Please enter a valid email.');
+    }
+  }
+
+  renderProducts();
+</script>
+</body>
+</html>
